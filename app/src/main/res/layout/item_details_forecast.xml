@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/forecastLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/default_margin"
+    app:cardCornerRadius="@dimen/half_margin">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_margin"
+        android:paddingTop="@dimen/half_margin"
+        android:paddingBottom="@dimen/half_margin">
+
+        <ImageView
+            android:id="@+id/forecastDetailsImg"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintWidth_percent="0.2"
+            app:layout_constraintHeight_percent="0.5"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/forecastDetailsDate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/semi_large_text"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/half_margin"
+            android:layout_marginStart="@dimen/semi_default_margin"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/forecastDetailsImg"
+            tools:text="22/10/2020"/>
+
+        <TextView
+            android:id="@+id/forecastDetailsDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/semi_large_text"
+            android:textColor="@color/dark_grey"
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/half_margin"
+            app:layout_constraintTop_toBottomOf="@+id/forecastDetailsDate"
+            app:layout_constraintStart_toStartOf="@+id/forecastDetailsDate"
+            tools:text="Partly cloud"/>
+
+        <TextView
+            android:id="@+id/forecastDetailsTemperatures"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/semi_large_text"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/half_margin"
+            app:layout_constraintTop_toBottomOf="@+id/forecastDetailsDescription"
+            app:layout_constraintStart_toStartOf="@+id/forecastDetailsDescription"
+            tools:text="11°c / 9°c"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

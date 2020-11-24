@@ -1,3 +1,34 @@
 <resources>
+
     <string name="app_name">WeatherApp</string>
+    <string name="empty" />
+    <string name="google_maps_key">AIzaSyC02qwPhVhW-MnOUmgHqLgtwyccFyKHAhw</string>
+    <string name="fragment_city">Home</string>
+    <string name="fragment_forecast">5-days Forecast</string>
+    <string name="fragment_details">Hourly Forecast</string>
+    <string name="cancel">Cancel</string>
+    <string name="ok">OK</string>
+    <string name="yes">YES</string>
+    <string name="no">NO</string>
+    <string name="success">Success</string>
+    <string name="try_again">Something went wrong. Please try again</string>
+    <string name="no_internet">You must be connected to Internet</string>
+    <string name="celcius">°C</string>
+
+
+    <string name="city_fragment_tittle">Favorite Cities</string>
+    <string name="city_fragment_search_title">City</string>
+    <string name="city_fragment_search_message">Search the cities you wish to add</string>
+    <string name="city_fragment_search_hint">Search city</string>
+    <string name="city_fragment_already_saved">The city already exists</string>
+    <string name="city_fragment_delete_dialog">Are you sure you want to delete this city?</string>
+
+    <string name="details_fragment_one_hour_chip">1-Hour</string>
+    <string name="details_fragment_three_hour_chip">3-Hour</string>
+    <string name="details_fragment_six_hour_chip">6-Hour</string>
+
+    <string name="city_adapter_forecast_btn">5-Day</string>
+    <string name="city_adapter_details_btn">Hourly</string>
+
+    <string name="details_adapter_real_feel">Real feel:</string>
 </resources>
