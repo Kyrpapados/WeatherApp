@@ -55,9 +55,8 @@ class CityFragment : BaseFragment(), OnCityClickListener, OnSearchItemClickListe
 
             retrieveCities.observe(viewLifecycleOwner, { event ->
                 event.getContentIfNotHandled()?.let {
-                    cityAdapter = CityAdapter(it, this@CityFragment)
+                    cityAdapter.setData(it)
 
-                    cityRecyclerView.adapter = cityAdapter
                 }
             })
 
@@ -94,7 +93,9 @@ class CityFragment : BaseFragment(), OnCityClickListener, OnSearchItemClickListe
 
     override fun setupViews() {
         cityRecyclerView.apply {
+            cityAdapter = CityAdapter(this@CityFragment)
             layoutManager = LinearLayoutManager(context)
+            cityRecyclerView.adapter = cityAdapter
         }
 
         dialog = context?.let {

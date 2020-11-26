@@ -11,7 +11,15 @@ import com.kyrpapados.weatherapp.R
 import com.kyrpapados.weatherapp.db.entities.CityData
 import com.kyrpapados.weatherapp.ui.main.city.listeners.OnCityClickListener
 
-class CityAdapter(private val cityList: List<CityData>, private val onCityClickListener: OnCityClickListener): RecyclerView.Adapter<CityAdapter.CityViewHolder>() {
+class CityAdapter(private val onCityClickListener: OnCityClickListener): RecyclerView.Adapter<CityAdapter.CityViewHolder>() {
+
+    private var cityList = mutableListOf<CityData>()
+
+    fun setData(cities: List<CityData>){
+        cityList.clear()
+        cityList = cities.toMutableList()
+        notifyDataSetChanged()
+    }
 
     class CityViewHolder(v: View) : RecyclerView.ViewHolder(v) {
         val cityName: TextView = v.findViewById(R.id.cityItemName)
