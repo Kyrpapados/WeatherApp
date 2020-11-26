@@ -19,7 +19,7 @@ import com.kyrpapados.weatherapp.util.Statics.Companion.SIX_HOUR
 import com.kyrpapados.weatherapp.util.Statics.Companion.THREE_HOUR
 import com.kyrpapados.weatherapp.util.extensions.parseHour
 
-class DetailsAdapter(private val context: Context, private var weatherList: List<Hour>) :
+class DetailsAdapter(private val context: Context) :
     RecyclerView.Adapter<DetailsAdapter.DetailsForecastViewHolder>() {
 
     private var hourItem = mutableListOf<Hour>()
@@ -37,12 +37,12 @@ class DetailsAdapter(private val context: Context, private var weatherList: List
         return DetailsForecastViewHolder(v)
     }
 
-    fun filterList(hour: String){
+    fun filterList(hour: String, weatherList: List<Hour>){
         hourItem.clear()
+
         when(hour){
             ONE_HOUR -> {
                 hourItem = weatherList.toMutableList()
-                notifyDataSetChanged()
             }
             THREE_HOUR -> {
                 var i = 0
@@ -52,8 +52,6 @@ class DetailsAdapter(private val context: Context, private var weatherList: List
 
                     i += 3
                 }
-
-                notifyDataSetChanged()
             }
             SIX_HOUR -> {
                 var i = 0
@@ -63,10 +61,10 @@ class DetailsAdapter(private val context: Context, private var weatherList: List
 
                     i += 6
                 }
-
-                notifyDataSetChanged()
             }
         }
+
+        notifyDataSetChanged()
     }
 
     @SuppressLint("SetTextI18n")

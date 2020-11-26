@@ -17,7 +17,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:queryBackground="@color/secondaryLight"
         app:queryHint="@string/city_fragment_search_hint" />
 
     <androidx.recyclerview.widget.RecyclerView

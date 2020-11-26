@@ -7,13 +7,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.kyrpapados.weatherapp.R
 import com.kyrpapados.weatherapp.base.BaseFragment
 import com.kyrpapados.weatherapp.db.entities.CityData
+import com.kyrpapados.weatherapp.model.local.forecast.Hour
 import com.kyrpapados.weatherapp.model.local.forecast.Weather
 import com.kyrpapados.weatherapp.util.Statics.Companion.CITY
 import com.kyrpapados.weatherapp.util.Statics.Companion.ONE_HOUR
 import com.kyrpapados.weatherapp.util.Statics.Companion.SIX_HOUR
 import com.kyrpapados.weatherapp.util.Statics.Companion.THREE_HOUR
 import com.kyrpapados.weatherapp.util.Statics.Companion.WEATHER_FORECAST
-import kotlinx.android.synthetic.main.fragment_city.*
 import kotlinx.android.synthetic.main.fragment_details.*
 import kotlinx.android.synthetic.main.fragment_details.loader
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -26,6 +26,8 @@ class DetailsFragment : BaseFragment() {
     private lateinit var weatherForecast: Weather
     private lateinit var detailsAdapter: DetailsAdapter
 
+    private var hourlyList = mutableListOf<Hour>()
+
     override fun getLayout(): Int = R.layout.fragment_details
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -33,9 +35,10 @@ class DetailsFragment : BaseFragment() {
 
         cityData = arguments?.getParcelable(CITY)!!
         weatherForecast = arguments?.getParcelable(WEATHER_FORECAST)!!
+        hourlyList = weatherForecast.hourly.toMutableList()
 
-        detailsAdapter = DetailsAdapter(requireContext(), weatherForecast.hourly)
-        detailsAdapter.filterList(ONE_HOUR)
+        detailsAdapter = DetailsAdapter(requireContext())
+        detailsAdapter.filterList(ONE_HOUR, hourlyList)
         detailsRecyclerView.adapter = detailsAdapter
     }
 
@@ -50,9 +53,9 @@ class DetailsFragment : BaseFragment() {
             todayForecastList.observe(viewLifecycleOwner, { event ->
                 event.getContentIfNotHandled()?.let {
                     detailsSwipeLayout.isRefreshing = false
-                    detailsAdapter = DetailsAdapter(requireContext(), it[0].hourly)
-                    detailsAdapter.filterList(ONE_HOUR)
-                    //detailsRecyclerView.adapter = detailsAdapter
+
+                    hourlyList = it[0].hourly.toMutableList()
+                    detailsAdapter.filterList(ONE_HOUR, hourlyList)
                 }
             })
         }
@@ -73,15 +76,15 @@ class DetailsFragment : BaseFragment() {
 
     override fun setupListeners() {
         oneHourChip.setOnClickListener {
-            detailsAdapter.filterList(ONE_HOUR)
+            detailsAdapter.filterList(ONE_HOUR, hourlyList)
         }
 
         threeHourChip.setOnClickListener {
-            detailsAdapter.filterList(THREE_HOUR)
+            detailsAdapter.filterList(THREE_HOUR, hourlyList)
         }
 
         sixHourChip.setOnClickListener {
-            detailsAdapter.filterList(SIX_HOUR)
+            detailsAdapter.filterList(SIX_HOUR, hourlyList)
         }
 
         detailsSwipeLayout.setOnRefreshListener {
